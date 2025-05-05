@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-debug
+  namespace: default
+spec:
+  shareProcessNamespace: true
+  containers:
+    - name: nginx-debug
+      image: test/nginx-custom:v0.2
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - mountPath: /data
+          name: mydir
+  volumes:
+    - name: mydir
+      emptyDir: {}
